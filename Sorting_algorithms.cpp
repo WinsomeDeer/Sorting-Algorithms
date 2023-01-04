@@ -41,11 +41,19 @@ void Insertion_Sort(vector<int>& x){
         }
     }
 }
+// Merge Sort. (TBC).
+void Merge_Sort(vector<int>& x, int l, int r){
+    // Base case.
+    if(l > r){
+        return;
+    }
+    int mid = l + (r-l)/2;
+    Merge_Sort(x, l, mid);
+    Merge_Sort(x, mid+1, r);
+    merge(x);
+}
 // Main function.
 int main(void){
-    int arr[] = {3,2,1,0};
-    int N = sizeof(arr)/sizeof(arr[0]);
-    Bubble_Sort(arr, N);
     for(int i = 0; i < N; i++){
         cout << arr[i] << " ";
     }
