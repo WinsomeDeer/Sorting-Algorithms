@@ -43,6 +43,10 @@ void Insertion_Sort(vector<int>& x){
 }
 // Merge Sort.
 void Merge_Sort(vector<int>& x){
+    // Base case.
+    if(x.size() == 1){
+        return;
+    } 
     // Split the array into two parts.
     if(x.size() > 1){
         vector<int> left = vector<int>(x.begin(), x.begin() + x.size()/2);
