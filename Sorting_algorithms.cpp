@@ -41,16 +41,39 @@ void Insertion_Sort(vector<int>& x){
         }
     }
 }
-// Merge Sort. (TBC).
-void Merge_Sort(vector<int>& x, int l, int r){
-    // Base case.
-    if(l > r){
-        return;
+// Merge Sort.
+void Merge_Sort(vector<int>& x){
+    // Split the array into two parts.
+    if(x.size() > 1){
+        vector<int> left = vector<int>(x.begin(), x.begin() + x.size()/2);
+        vector<int> right = vector<int>(x.begin() + x.size()/2, x.end());
+        // Recursive call.
+        Merge_Sort(left);
+        Merge_Sort(right);
+        // Merge.
+        int i = 0, j = 0, k = 0;
+        while(i < left.size() && j < right.size()){
+            if(left[i] < right[j]){
+                x[k] = left[i];
+                i += 1; 
+            }
+            else{
+                x[k] = right[j];
+                j += 1;
+            }
+            k += 1;
+        }
+        // If the left array has elements but the right array is empty.
+        while(i < left.size()){
+            x[k] = left[i];
+            i += 1, k += 1;
+        }
+        // If the right array has elements but the left array is empty.
+        while(j < right.size()){
+            x[k] = right[j];
+            j += 1, k += 1;
+        }
     }
-    int mid = l + (r-l)/2;
-    Merge_Sort(x, l, mid);
-    Merge_Sort(x, mid+1, r);
-    merge(x);
 }
 // Main function.
 int main(void){
