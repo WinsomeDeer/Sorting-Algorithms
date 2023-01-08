@@ -79,6 +79,25 @@ void Merge_Sort(vector<int>& x){
         }
     }
 }
+// Counting Sort.
+void Counting_Sort(vector<int>& x){
+    int max = *max_element(x.begin(), x.end());
+    vector<int> y(x.size(), 0);
+    vector<int> count(max+1, 0);
+    for(int i = 0; i < x.size(); i++){
+        count[x[i]]++;
+    }
+    for(int i = 1; i < count.size(); i++){
+        count[i] += count[i-1];
+    }
+    for(int i = x.size()-1; i >= 0; i--){
+        y[count[x[i]] - 1] = x[i];
+        count[x[i]]--;
+    }
+    for(int i = 0; i < y.size(); i++){
+        x[i] = y[i];
+    }
+}
 // Main function.
 int main(void){
     for(int i = 0; i < N; i++){
