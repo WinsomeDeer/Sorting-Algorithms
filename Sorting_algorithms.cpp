@@ -98,6 +98,18 @@ void Counting_Sort(vector<int>& x){
         x[i] = y[i];
     }
 }
+void Shell_Sort(vector<int>& x){
+    for(int i = x.size()/2; i > 0; i /= 2){
+        for(int j = i; j < x.size(); j++){
+            int temp = x[j];
+            int k;
+            for(k = j; j >= i && x[k - i] > temp; k -= i){
+                x[k] = x[k - i];
+            }
+            x[k] = temp;
+        }
+    }
+}
 // Main function.
 int main(void){
     for(int i = 0; i < N; i++){
